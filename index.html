@@ -1,0 +1,57 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus"></script>
+    <script src="//unpkg.com/@element-plus/icons-vue"></script>
+    <title>随机考试系统</title>
+</head>
+<body>
+<div id="app">
+    <el-card style="margin: 0 auto">
+        <template #header>
+            <div class="card-header">
+               <el-dropdown>
+    <span class="el-dropdown-link">
+      选择科目
+    </span>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item v-for="(data, index) in examData" :key="index">
+                            {{ data.科目 }}
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
+            </div>
+            </template>
+        <template #footer>加油</template>
+    </el-card>
+</div>
+<script src="examData.js"></script> <!-- 引入数据 -->
+<script>
+    const App = {
+        data() {
+            return {
+                examData: examData, // 用于存储科目列表
+            };
+        },
+    };
+    const app = Vue.createApp(App);
+    app.use(ElementPlus);
+    app.mount("#app");
+</script>
+<style scoped>
+     .el-dropdown-link {
+        cursor: pointer;
+        color: var(--el-color-primary);
+        display: flex;
+        align-items: center;
+    }
+</style>
+</body>
+</html>
